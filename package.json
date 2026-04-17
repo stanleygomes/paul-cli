@@ -27,8 +27,7 @@
   ],
   "scripts": {
     "dev": "tsx src/index.ts",
-    "build": "rm -rf dist && tsc && pnpm cp-prompts",
-    "cp-prompts": "mkdir -p dist/src/prompts && cp src/prompts/*.md dist/src/prompts/",
+    "build": "rm -rf dist && tsc",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "check-types": "tsc --noEmit",

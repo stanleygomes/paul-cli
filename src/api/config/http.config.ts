@@ -1,4 +1,4 @@
-import { httpClient } from '@utils/http.util.js';
+import { httpClient } from '../../utils/http.util.js';
 import { AuthInterceptor } from '../interceptors/auth.interceptor.js';
 
 export class HttpManager {
