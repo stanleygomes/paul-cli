@@ -1,4 +1,4 @@
-import { Output } from '@utils/output.util.js';
+import { Logger } from '@utils/logger.util.js';
 import { t } from '@utils/i18n/i18n.util.js';
 import type { TodoistTask } from '../types/todoist-task.type.js';
 import chalk from 'chalk';
@@ -6,10 +6,10 @@ import chalk from 'chalk';
 export class TasksRender {
   public static async list(tasks: TodoistTask[], projectName?: string): Promise<void> {
     if (projectName) {
-      Output.info(`${await t('projectName')}: ${chalk.cyan.bold(projectName)}`);
+      Logger.info(`${await t('projectName')}: ${chalk.cyan.bold(projectName)}`);
     }
 
-    Output.info(await t('tasksListTitle'));
+    Logger.info(await t('tasksListTitle'));
     console.log('────────────────────────────────────────────────');
 
     tasks.forEach((task) => {

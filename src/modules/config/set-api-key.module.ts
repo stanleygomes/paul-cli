@@ -1,14 +1,14 @@
 import { ConfigValidator } from '@validators/config.validators.js';
 import { t } from '@utils/i18n/i18n.util.js';
 import { configStore } from '@store/config.store.js';
-import { Output } from '@utils/output.util.js';
+import { Logger } from '@utils/logger.util.js';
 import { Prompt } from '@utils/prompt.util.js';
 
 export class SetApiKeyModule {
   public static async run(apiKeyArg?: string): Promise<void> {
     const config = await configStore.get();
     if (!config) {
-      Output.error(await t('configNotFound'));
+      Logger.error(await t('configNotFound'));
       return;
     }
 
@@ -24,6 +24,6 @@ export class SetApiKeyModule {
       apiKey,
     });
 
-    Output.success(await t('apiKeyUpdated'));
+    Logger.success(await t('apiKeyUpdated'));
   }
 }

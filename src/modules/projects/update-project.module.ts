@@ -1,5 +1,5 @@
 import { configStore } from '@store/config.store.js';
-import { Output } from '@utils/output.util.js';
+import { Logger } from '@utils/logger.util.js';
 import { Prompt } from '@utils/prompt.util.js';
 import { t } from '@utils/i18n/i18n.util.js';
 import { ProjectValidator } from '@validators/project.validators.js';
@@ -11,7 +11,7 @@ export class UpdateProjectModule {
     const config = await configStore.get();
 
     if (!config?.apiKey) {
-      Output.error(await t('apiKeyNotFound'));
+      Logger.error(await t('apiKeyNotFound'));
       return;
     }
 
@@ -45,13 +45,13 @@ export class UpdateProjectModule {
       const updateSpinner = ora(await t('loading')).start();
       await ProjectsService.updateProject(projectId, newName, updateSpinner);
 
-      Output.success(await t('projectUpdated'));
+      Logger.success(await t('projectUpdated'));
     } catch (error) {
       spinner.stop();
       if (config?.debug) {
         console.error('[DEBUG] Full Error Object:', error);
       }
-      Output.error(await t('errorFetchingTasks'));
+      Logger.error(await t('errorFetchingTasks'));
     }
   }
 }

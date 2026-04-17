@@ -1,13 +1,14 @@
 #!/usr/bin/env node
 
-import { Command } from 'commander';
-import { InitCommand } from '@commands/init.command.js';
-import { ConfigCommand } from '@commands/config.command.js';
-import { TasksCommand } from '@commands/tasks.command.js';
-import { ProjectsCommand } from '@commands/projects.command.js';
-import { Output } from '@utils/output.util.js';
-import { I18n, t } from '@utils/i18n/i18n.util.js';
 import { HttpManager } from '@api/config/http.config.js';
+import { ConfigCommand } from '@commands/config.command.js';
+import { InitCommand } from '@commands/init.command.js';
+import { ProjectsCommand } from '@commands/projects.command.js';
+import { TasksCommand } from '@commands/tasks.command.js';
+import { I18n, t } from '@utils/i18n/i18n.util.js';
+import { Logger } from '@utils/logger.util.js';
+import { Command } from 'commander';
+import { BannerRender } from './render/banner.render.js';
 
 async function run() {
   HttpManager.setup();
@@ -20,7 +21,7 @@ async function run() {
     .version('1.0.0')
     .hook('preAction', async () => {
       await I18n.initialize();
-      Output.banner(await t('bannerSubtitle'));
+      BannerRender.render(await t('bannerSubtitle'));
     });
 
   await I18n.initialize();
@@ -39,7 +40,7 @@ async function run() {
     await program.parseAsync(process.argv);
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error);
-    Output.error(message);
+    Logger.error(message);
     process.exitCode = 1;
   }
 }

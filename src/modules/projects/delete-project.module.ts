@@ -1,5 +1,5 @@
 import { configStore } from '@store/config.store.js';
-import { Output } from '@utils/output.util.js';
+import { Logger } from '@utils/logger.util.js';
 import { Prompt } from '@utils/prompt.util.js';
 import { t } from '@utils/i18n/i18n.util.js';
 import ora from 'ora';
@@ -10,7 +10,7 @@ export class DeleteProjectModule {
     const config = await configStore.get();
 
     if (!config?.apiKey) {
-      Output.error(await t('apiKeyNotFound'));
+      Logger.error(await t('apiKeyNotFound'));
       return;
     }
 
@@ -43,13 +43,13 @@ export class DeleteProjectModule {
       const deleteSpinner = ora(await t('loading')).start();
       await ProjectsService.deleteProject(projectId, deleteSpinner);
 
-      Output.success(await t('projectDeleted'));
+      Logger.success(await t('projectDeleted'));
     } catch (error) {
       spinner.stop();
       if (config?.debug) {
         console.error('[DEBUG] Full Error Object:', error);
       }
-      Output.error(await t('errorFetchingTasks'));
+      Logger.error(await t('errorFetchingTasks'));
     }
   }
 }

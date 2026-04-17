@@ -1,7 +1,7 @@
 import { ConfigValidator } from '@validators/config.validators.js';
 import { t } from '@utils/i18n/i18n.util.js';
 import { configStore } from '@store/config.store.js';
-import { Output } from '@utils/output.util.js';
+import { Logger } from '@utils/logger.util.js';
 import { Prompt } from '@utils/prompt.util.js';
 import { AI_AGENT_CHOICES } from '@constants/ai-agents.constant.js';
 import type { AiAgent } from '../../types/config.type.js';
@@ -10,7 +10,7 @@ export class SetAiAgentModule {
   public static async run(aiAgentArg?: string): Promise<void> {
     const config = await configStore.get();
     if (!config) {
-      Output.error(await t('configNotFound'));
+      Logger.error(await t('configNotFound'));
       return;
     }
 
@@ -30,6 +30,6 @@ export class SetAiAgentModule {
       aiAgent,
     });
 
-    Output.success(await t('aiAgentUpdated'));
+    Logger.success(await t('aiAgentUpdated'));
   }
 }

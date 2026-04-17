@@ -1,5 +1,5 @@
 import { configStore } from '@store/config.store.js';
-import { Output } from '@utils/output.util.js';
+import { Logger } from '@utils/logger.util.js';
 import { Prompt } from '@utils/prompt.util.js';
 import { t } from '@utils/i18n/i18n.util.js';
 import { ProjectValidator } from '@validators/project.validators.js';
@@ -21,7 +21,7 @@ export class CreateProjectModule {
       const project = await ProjectsService.createProject(name, spinner);
 
       if (project) {
-        Output.success(await t('projectCreated'));
+        Logger.success(await t('projectCreated'));
       }
     } catch (error) {
       spinner.stop();
@@ -29,7 +29,7 @@ export class CreateProjectModule {
       if (config?.debug) {
         console.error('[DEBUG] Full Error Object:', error);
       }
-      Output.error(await t('errorFetchingTasks'));
+      Logger.error(await t('errorFetchingTasks'));
     }
   }
 }

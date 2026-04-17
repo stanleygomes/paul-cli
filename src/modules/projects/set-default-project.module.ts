@@ -1,6 +1,6 @@
 import { ProjectsService } from '../../services/projects.service.js';
 import { configStore } from '@store/config.store.js';
-import { Output } from '@utils/output.util.js';
+import { Logger } from '@utils/logger.util.js';
 import { Prompt } from '@utils/prompt.util.js';
 import { t } from '@utils/i18n/i18n.util.js';
 import ora from 'ora';
@@ -10,7 +10,7 @@ export class SetDefaultProjectModule {
     const config = await configStore.get();
 
     if (!config?.apiKey) {
-      Output.error(await t('apiKeyNotFound'));
+      Logger.error(await t('apiKeyNotFound'));
       return;
     }
 
@@ -41,13 +41,13 @@ export class SetDefaultProjectModule {
 
       await configStore.save({ ...config, defaultProject });
 
-      Output.success(await t('defaultProjectUpdated'));
+      Logger.success(await t('defaultProjectUpdated'));
     } catch (error) {
       spinner.stop();
       if (config?.debug) {
         console.error('[DEBUG] Full Error Object:', error);
       }
-      Output.error(await t('errorFetchingTasks'));
+      Logger.error(await t('errorFetchingTasks'));
     }
   }
 }

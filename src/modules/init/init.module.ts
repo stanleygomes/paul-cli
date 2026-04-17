@@ -1,7 +1,7 @@
 import { configStore } from '@store/config.store.js';
 import type { AiAgent, CliConfig } from '../../types/config.type.js';
 import { I18n, t } from '@utils/i18n/i18n.util.js';
-import { Output } from '@utils/output.util.js';
+import { Logger } from '@utils/logger.util.js';
 import { Prompt } from '@utils/prompt.util.js';
 import { ConfigValidator } from '@validators/config.validators.js';
 import { AI_AGENT_CHOICES } from '@constants/ai-agents.constant.js';
@@ -33,6 +33,6 @@ export class InitModule {
 
     await configStore.save(config);
 
-    Output.success(await t('initSuccess'));
+    Logger.success(await t('initSuccess'));
   }
 }

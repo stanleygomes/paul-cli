@@ -1,5 +1,5 @@
 import { configStore } from '@store/config.store.js';
-import { Output } from '@utils/output.util.js';
+import { Logger } from '@utils/logger.util.js';
 import { Prompt } from '@utils/prompt.util.js';
 import { t } from '@utils/i18n/i18n.util.js';
 import { TaskValidator } from '@validators/task.validators.js';
@@ -12,7 +12,7 @@ export class CreateTaskModule {
     const config = await configStore.get();
 
     if (!config?.apiKey) {
-      Output.error(await t('apiKeyNotFound'));
+      Logger.error(await t('apiKeyNotFound'));
       return;
     }
 
@@ -37,14 +37,14 @@ export class CreateTaskModule {
       );
 
       if (task) {
-        Output.success(await t('taskCreated'));
+        Logger.success(await t('taskCreated'));
       }
     } catch (error) {
       spinner.stop();
       if (config?.debug) {
         console.error('[DEBUG] Full Error Object:', error);
       }
-      Output.error(await t('errorFetchingTasks'));
+      Logger.error(await t('errorFetchingTasks'));
     }
   }
 }

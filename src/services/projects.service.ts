@@ -1,6 +1,6 @@
 import { createApiClient } from '@api/api.js';
 import { configStore } from '@store/config.store.js';
-import { Output } from '@utils/output.util.js';
+import { Logger } from '@utils/logger.util.js';
 import { t } from '@utils/i18n/i18n.util.js';
 import type { TodoistProject } from '../types/todoist-project.type.js';
 import type { Ora } from 'ora';
@@ -12,7 +12,7 @@ export class ProjectsService {
     const config = await configStore.get();
     if (!config?.apiKey) {
       spinner?.stop();
-      Output.error(await t('apiKeyNotFound'));
+      Logger.error(await t('apiKeyNotFound'));
       return null;
     }
     return createApiClient(config.apiKey);
@@ -26,7 +26,7 @@ export class ProjectsService {
     spinner.stop();
 
     if (projects.length === 0) {
-      Output.info(await t('noProjectsFound'));
+      Logger.info(await t('noProjectsFound'));
       return null;
     }
 
