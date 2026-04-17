@@ -5,18 +5,27 @@ import { t } from '@utils/i18n/i18n.util.js';
 import type { TodoistTask } from '../types/todoist-task.type.js';
 import type { Ora } from 'ora';
 
+import type { ApiClient } from '@api/api.js';
+
 export class TasksService {
-  public static async getTasksOrExit(spinner: Ora): Promise<TodoistTask[] | null> {
+  private static async getApiOrExit(spinner?: Ora): Promise<ApiClient | null> {
     const config = await configStore.get();
     if (!config?.apiKey) {
-      spinner.stop();
+      spinner?.stop();
       Output.error(await t('apiKeyNotFound'));
       return null;
     }
+    return createApiClient(config.apiKey);
+  }
 
-    const api = createApiClient(config.apiKey);
-    const tasks = await api.tasks.list();
+  public static async getTasksOrExit(
+    spinner: Ora,
+    projectId?: string,
+  ): Promise<TodoistTask[] | null> {
+    const api = await this.getApiOrExit(spinner);
+    if (!api) return null;
 
+    const tasks = await api.tasks.list(projectId);
     spinner.stop();
 
     if (tasks.length === 0) {

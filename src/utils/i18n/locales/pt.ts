@@ -1,4 +1,5 @@
 export const pt = {
+  projectName: 'Projeto',
   bannerSubtitle: 'Seu assistente de tarefas no terminal',
   languageUpdated: 'Idioma atualizado com sucesso.',
   apiKeyUpdated: 'API Key atualizada com sucesso.',

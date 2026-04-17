@@ -32,6 +32,7 @@ This repository (`paul-cli`) is a command-line interface tool designed to manage
 | API Clients   | `src/api/client/`         |
 | API Resources | `src/api/resources/`      |
 | Feature Logic | `src/modules/`            |
+| Render        | `src/render/`             |
 | Services      | `src/services/`           |
 | Local Store   | `src/store/`              |
 | Validators    | `src/validators/`         |

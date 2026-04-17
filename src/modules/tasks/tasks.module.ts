@@ -1,8 +1,9 @@
 import { configStore } from '@store/config.store.js';
-import { Output } from '@utils/output.util.js';
 import { DictionaryKey, t } from '@utils/i18n/i18n.util.js';
 import ora from 'ora';
 import { TasksService } from '../../services/tasks.service.js';
+import { ProjectsService } from '../../services/projects.service.js';
+import { TasksRender } from '../../render/tasks.render.js';
 
 export class TasksModule {
   public static async list(): Promise<void> {
@@ -10,14 +11,19 @@ export class TasksModule {
     const spinner = ora(await t('fetchingTasks')).start();
 
     try {
-      const tasks = await TasksService.getTasksOrExit(spinner);
+      const tasks = await TasksService.getTasksOrExit(spinner, config?.defaultProjectId);
       if (!tasks) return;
 
-      Output.info(await t('tasksListTitle'));
-      tasks.forEach((task) => {
-        const priority = 'P' + task.priority;
-        Output.log(`${task.checked ? '✔' : '☐'} ${task.content} (${priority})`);
-      });
+      let projectName: string | undefined;
+
+      if (config?.defaultProjectId) {
+        const projectsSpinner = ora(await t('fetchingProjects')).start();
+        const projects = await ProjectsService.getProjectsOrExit(projectsSpinner);
+        const project = projects?.find((p) => p.id === config.defaultProjectId);
+        projectName = project?.name;
+      }
+
+      await TasksRender.list(tasks, projectName);
     } catch (error) {
       spinner.stop();
 
