@@ -32,10 +32,6 @@ async function run() {
 
   await I18n.initialize();
 
-  if (process.argv.length > 2 && process.argv[2] !== '--help') {
-    Output.banner(await t('bannerSubtitle'));
-  }
-
   try {
     await program.parseAsync(process.argv);
   } catch (error) {
