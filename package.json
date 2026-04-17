@@ -1,0 +1,58 @@
+{
+  "name": "paul-cli",
+  "type": "module",
+  "description": "CLI tool for managing tasks and projects via Todoist API",
+  "version": "1.0.0",
+  "private": true,
+  "bin": {
+    "paul": "dist/index.js"
+  },
+  "keywords": [
+    "todoist",
+    "tasks",
+    "projects",
+    "cli",
+    "management",
+    "terminal"
+  ],
+  "author": "stanleygomes",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/stanleygomes/paul-cli"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "dev": "tsx src/index.ts",
+    "build": "rm -rf dist && tsc && pnpm cp-prompts",
+    "cp-prompts": "mkdir -p dist/src/prompts && cp src/prompts/*.md dist/src/prompts/",
+    "lint": "eslint . --ext .ts",
+    "lint:fix": "eslint . --ext .ts --fix",
+    "check-types": "tsc --noEmit",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "format:check": "prettier --check \"src/**/*.ts\"",
+    "check": "pnpm format:check && pnpm lint && pnpm check-types",
+    "prepare": "husky"
+  },
+  "dependencies": {
+    "@inquirer/prompts": "^8.0.1",
+    "boxen": "^8.0.1",
+    "chalk": "^5.6.2",
+    "commander": "^14.0.1",
+    "figlet": "^1.9.3",
+    "ora": "^8.2.0",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.3",
+    "dotenv": "^16.6.1",
+    "eslint": "^9.39.1",
+    "prettier": "^3.8.1",
+    "tsup": "^8.5.1",
+    "tsx": "^4.21.0",
+    "typescript": "5.9.2"
+  }
+}
