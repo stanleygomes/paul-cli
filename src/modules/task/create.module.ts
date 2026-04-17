@@ -1,12 +1,12 @@
-import { generateUUID } from "@paul/utils";
-import { createApiClient } from "../../api/api";
-import { settingsStore } from "../../store/settings.store";
-import { AuthGuard } from "../../utils/auth-guard.util";
-import { t } from "../../utils/i18n/i18n.util";
-import { Output } from "../../utils/output.util";
-import { Prompt } from "../../utils/prompt.util";
-import { Loader } from "../../utils/spinner.util";
-import { TaskValidator } from "../../validators/task.validators";
+import { generateUUID } from '@paul/utils';
+import { createApiClient } from '../../api/api.js';
+import { settingsStore } from '../../store/settings.store.js';
+import { AuthGuard } from '../../utils/auth-guard.util.js';
+import { t } from '../../utils/i18n/i18n.util.js';
+import { Output } from '../../utils/output.util.js';
+import { Prompt } from '../../utils/prompt.util.js';
+import { Loader } from '../../utils/spinner.util.js';
+import { TaskValidator } from '../../validators/task.validators.js';
 
 export class CreateTaskModule {
   public static async run(titleArg?: string): Promise<void> {
@@ -15,7 +15,7 @@ export class CreateTaskModule {
     const activeProjectId = settings.activeProjectId;
 
     const title = await Prompt.ask({
-      messageKey: "askTaskTitle",
+      messageKey: 'askTaskTitle',
       schema: TaskValidator.title,
       initialValue: titleArg,
     });
@@ -23,13 +23,13 @@ export class CreateTaskModule {
     const payload = TaskValidator.createPayload.parse({
       id: generateUUID(),
       title,
-      content: "",
+      content: '',
       done: false,
-      notes: "",
+      notes: '',
       important: false,
-      dueDate: "",
-      dueTime: "",
-      url: "",
+      dueDate: '',
+      dueTime: '',
+      url: '',
       subtasks: [],
       tags: [],
       isDeleted: false,
@@ -39,6 +39,6 @@ export class CreateTaskModule {
     const api = createApiClient(token);
     await Loader.run(() => api.task.create(payload));
 
-    Output.success(await t("taskCreated"));
+    Output.success(await t('taskCreated'));
   }
 }

@@ -1,22 +1,22 @@
-import type { Language } from "../../types/language.type";
-import { settingsStore } from "../../store/settings.store";
+import type { Language } from '../../types/language.type.js';
+import { settingsStore } from '../../store/settings.store.js';
 
-import { en } from "./locales/en";
-import { pt } from "./locales/pt";
+import { en } from './locales/en.js';
+import { pt } from './locales/pt.js';
 
 const dictionary = {
   en,
   pt,
 } as const;
 
-export type DictionaryKey = keyof (typeof dictionary)["en"];
+export type DictionaryKey = keyof (typeof dictionary)['en'];
 
 export class I18n {
   private static currentLanguage: Language | null = null;
 
   public static readonly choices = [
-    { name: "English", value: "en" },
-    { name: "Português", value: "pt" },
+    { name: 'English', value: 'en' },
+    { name: 'Português', value: 'pt' },
   ] as const;
 
   public static async initialize(): Promise<void> {
@@ -28,7 +28,7 @@ export class I18n {
 
   public static async t(key: DictionaryKey): Promise<string> {
     await I18n.initialize();
-    const language = I18n.currentLanguage ?? "en";
+    const language = I18n.currentLanguage ?? 'en';
     return dictionary[language][key];
   }
 
@@ -37,7 +37,7 @@ export class I18n {
   }
 
   public static getLabel(language: Language): string {
-    return language === "pt" ? "Português" : "English";
+    return language === 'pt' ? 'Português' : 'English';
   }
 }
 

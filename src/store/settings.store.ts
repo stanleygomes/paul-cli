@@ -1,9 +1,9 @@
-import type { CliSettings } from "../types/settings.type";
-import { PathProvider } from "../utils/path.util";
-import { JsonStorage } from "../utils/json-storage.util";
+import type { CliSettings } from '../types/settings.type.js';
+import { PathProvider } from '../utils/path.util.js';
+import { JsonStorage } from '../utils/json-storage.util.js';
 
 const defaultSettings: CliSettings = {
-  language: "en",
+  language: 'en',
 };
 
 export class SettingsStore {

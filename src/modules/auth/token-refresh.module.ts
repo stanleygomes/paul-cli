@@ -1,11 +1,11 @@
-import { createApiClient } from "../../api/api";
-import { sessionStore } from "../../store/session.store";
+import { createApiClient } from '../../api/api.js';
+import { sessionStore } from '../../store/session.store.js';
 
 export class TokenRefreshModule {
   public static async run() {
     const session = await sessionStore.get();
     if (!session?.refreshToken) {
-      throw new Error("No refresh token found");
+      throw new Error('No refresh token found');
     }
 
     const api = createApiClient();

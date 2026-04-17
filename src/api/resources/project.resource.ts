@@ -1,11 +1,11 @@
-import type { Project } from "@paul/entities";
-import { ProjectValidator } from "../../validators/project.validators";
-import { BaseResource } from "../base.resource";
+import type { Project } from '@paul/entities';
+import { ProjectValidator } from '../../validators/project.validators.js';
+import { BaseResource } from '../base.resource.js';
 
 export class ProjectResource extends BaseResource {
   async list(): Promise<Project[]> {
     const response = await this.client.get<{ projects: Project[] }>(
-      "/v1/projects",
+      '/v1/projects',
       this.getRequestConfig(),
     );
 
@@ -14,7 +14,7 @@ export class ProjectResource extends BaseResource {
 
   async create(project: Record<string, unknown>): Promise<Project> {
     const response = await this.client.post<Project>(
-      "/v1/projects",
+      '/v1/projects',
       project,
       this.getRequestConfig(),
     );
@@ -22,10 +22,7 @@ export class ProjectResource extends BaseResource {
     return response.data;
   }
 
-  async update(
-    projectId: string,
-    payload: Record<string, unknown>,
-  ): Promise<Project> {
+  async update(projectId: string, payload: Record<string, unknown>): Promise<Project> {
     const response = await this.client.put<Project>(
       `/v1/projects/${projectId}`,
       payload,
@@ -36,9 +33,6 @@ export class ProjectResource extends BaseResource {
   }
 
   async delete(projectId: string): Promise<void> {
-    await this.client.delete(
-      `/v1/projects/${projectId}`,
-      this.getRequestConfig(),
-    );
+    await this.client.delete(`/v1/projects/${projectId}`, this.getRequestConfig());
   }
 }

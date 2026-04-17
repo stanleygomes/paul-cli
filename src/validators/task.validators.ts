@@ -1,19 +1,16 @@
-import { z } from "zod";
-import { taskSchema as sharedTaskSchema } from "@paul/entities";
+import { z } from 'zod';
+import { taskSchema as sharedTaskSchema } from '@paul/entities';
 
 export class TaskValidator {
   public static readonly title = z
     .string()
     .trim()
-    .min(1, "Title is required")
-    .max(500, "Title is too long");
+    .min(1, 'Title is required')
+    .max(500, 'Title is too long');
 
-  public static readonly content = z
-    .string()
-    .trim()
-    .max(500, "Content is too long");
+  public static readonly content = z.string().trim().max(500, 'Content is too long');
 
-  public static readonly id = z.string().uuid("Invalid task id");
+  public static readonly id = z.string().uuid('Invalid task id');
 
   public static readonly task = sharedTaskSchema;
 

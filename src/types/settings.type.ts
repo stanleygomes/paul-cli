@@ -1,4 +1,4 @@
-import type { Language } from "./language.type";
+import type { Language } from './language.type.js';
 
 export interface CliSettings {
   language: Language;

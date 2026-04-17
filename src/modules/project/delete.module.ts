@@ -1,9 +1,9 @@
-import { createApiClient } from "../../api/api";
-import { AuthGuard } from "../../utils/auth-guard.util";
-import { t } from "../../utils/i18n/i18n.util";
-import { Output } from "../../utils/output.util";
-import { Loader } from "../../utils/spinner.util";
-import { ResolveProjectModule } from "./resolve.module";
+import { createApiClient } from '../../api/api.js';
+import { AuthGuard } from '../../utils/auth-guard.util.js';
+import { t } from '../../utils/i18n/i18n.util.js';
+import { Output } from '../../utils/output.util.js';
+import { Loader } from '../../utils/spinner.util.js';
+import { ResolveProjectModule } from './resolve.module.js';
 
 export class DeleteProjectModule {
   public static async run(projectIdArg?: string): Promise<void> {
@@ -13,6 +13,6 @@ export class DeleteProjectModule {
     const api = createApiClient(token);
     await Loader.run(() => api.project.delete(projectId));
 
-    Output.success(await t("projectDeleted"));
+    Output.success(await t('projectDeleted'));
   }
 }

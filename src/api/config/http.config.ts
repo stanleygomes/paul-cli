@@ -1,5 +1,5 @@
-import { httpClient } from "@paul/http";
-import { AuthInterceptor } from "../interceptors/auth.interceptor";
+import { httpClient } from '@utils/http.util.js';
+import { AuthInterceptor } from '../interceptors/auth.interceptor.js';
 
 export class HttpManager {
   private static initialized = false;

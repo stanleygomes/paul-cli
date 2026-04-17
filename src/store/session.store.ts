@@ -1,6 +1,6 @@
-import type { SessionData } from "../types/session.type";
-import { PathProvider } from "../utils/path.util";
-import { JsonStorage } from "../utils/json-storage.util";
+import type { SessionData } from '../types/session.type.js';
+import { PathProvider } from '../utils/path.util.js';
+import { JsonStorage } from '../utils/json-storage.util.js';
 
 export class SessionStore {
   constructor(private readonly filePath: string) {}

@@ -1,21 +1,14 @@
-import {
-  httpClient,
-  type AxiosRequestConfig,
-  type AxiosResponse,
-} from "@paul/http";
-import { AUTH_API_URL } from "../../environment";
+import { httpClient, type AxiosRequestConfig, type AxiosResponse } from '@utils/http.util.js';
+import { AUTH_API_URL } from '../../environment.js';
 
 export class AuthHttpClient {
-  public get<T>(
-    url: string,
-    config?: AxiosRequestConfig,
-  ): Promise<AxiosResponse<T>> {
+  public get<T>(url: string, config?: AxiosRequestConfig): Promise<AxiosResponse<T>> {
     return httpClient.get<T>(`${AUTH_API_URL}${url}`, config);
   }
 
   public post<T>(
     url: string,
-    data?: any,
+    data?: unknown,
     config?: AxiosRequestConfig,
   ): Promise<AxiosResponse<T>> {
     return httpClient.post<T>(`${AUTH_API_URL}${url}`, data, config);
@@ -23,7 +16,7 @@ export class AuthHttpClient {
 
   public put<T>(
     url: string,
-    data?: any,
+    data?: unknown,
     config?: AxiosRequestConfig,
   ): Promise<AxiosResponse<T>> {
     return httpClient.put<T>(`${AUTH_API_URL}${url}`, data, config);
@@ -31,16 +24,13 @@ export class AuthHttpClient {
 
   public patch<T>(
     url: string,
-    data?: any,
+    data?: unknown,
     config?: AxiosRequestConfig,
   ): Promise<AxiosResponse<T>> {
     return httpClient.patch<T>(`${AUTH_API_URL}${url}`, data, config);
   }
 
-  public delete<T>(
-    url: string,
-    config?: AxiosRequestConfig,
-  ): Promise<AxiosResponse<T>> {
+  public delete<T>(url: string, config?: AxiosRequestConfig): Promise<AxiosResponse<T>> {
     return httpClient.delete<T>(`${AUTH_API_URL}${url}`, config);
   }
 }

@@ -1,5 +1,5 @@
-import type { AxiosInstance } from "axios";
-import { UnauthorizedHandler } from "../handlers/unauthorized/unauthorized.handler";
+import type { AxiosInstance } from 'axios';
+import { UnauthorizedHandler } from '../handlers/unauthorized/unauthorized.handler.js';
 
 export class AuthInterceptor {
   private handler: UnauthorizedHandler;

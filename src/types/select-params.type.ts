@@ -1,4 +1,4 @@
-import type { DictionaryKey } from "../utils/i18n/i18n.util";
+import type { DictionaryKey } from '../utils/i18n/i18n.util.js';
 
 export interface SelectAndParseParams<V> {
   messageKey: DictionaryKey;

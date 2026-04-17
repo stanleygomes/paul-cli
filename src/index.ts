@@ -1,14 +1,14 @@
 #!/usr/bin/env node
 
-import { Command } from "commander";
-import { LoginCommand } from "./commands/login.command";
-import { LogoutCommand } from "./commands/logout.command";
-import { TaskCommand } from "./commands/task.command";
-import { ProjectCommand } from "./commands/project.command";
-import { SettingsCommand } from "./commands/settings.command";
-import { Output } from "./utils/output.util";
-import { I18n, t } from "./utils/i18n/i18n.util";
-import { HttpManager } from "./api/config/http.config";
+import { Command } from 'commander';
+import { LoginCommand } from './commands/login.command.js';
+import { LogoutCommand } from './commands/logout.command.js';
+import { TaskCommand } from './commands/task.command.js';
+import { ProjectCommand } from './commands/project.command.js';
+import { SettingsCommand } from './commands/settings.command.js';
+import { Output } from './utils/output.util.js';
+import { I18n, t } from './utils/i18n/i18n.util.js';
+import { HttpManager } from './api/config/http.config.js';
 
 async function run() {
   HttpManager.setup();
@@ -16,12 +16,12 @@ async function run() {
   const program = new Command();
 
   program
-    .name("paul")
-    .description("Paul CLI - Your task assistant")
-    .version("1.0.0")
-    .hook("preAction", async () => {
+    .name('paul')
+    .description('Paul CLI - Your task assistant')
+    .version('1.0.0')
+    .hook('preAction', async () => {
       await I18n.initialize();
-      Output.banner(await t("bannerSubtitle"));
+      Output.banner(await t('bannerSubtitle'));
     });
 
   const commands = [
@@ -36,8 +36,8 @@ async function run() {
 
   await I18n.initialize();
 
-  if (process.argv.length > 2 && process.argv[2] !== "--help") {
-    Output.banner(await t("bannerSubtitle"));
+  if (process.argv.length > 2 && process.argv[2] !== '--help') {
+    Output.banner(await t('bannerSubtitle'));
   }
 
   try {

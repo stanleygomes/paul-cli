@@ -1,8 +1,8 @@
-import { authClient } from "./client/auth.client";
-import { coreClient } from "./client/core.client";
-import { AuthResource } from "./resources/auth.resource";
-import { ProjectResource } from "./resources/project.resource";
-import { TaskResource } from "./resources/task.resource";
+import { authClient } from './client/auth.client.js';
+import { coreClient } from './client/core.client.js';
+import { AuthResource } from './resources/auth.resource.js';
+import { ProjectResource } from './resources/project.resource.js';
+import { TaskResource } from './resources/task.resource.js';
 
 export class ApiClient {
   public readonly auth: AuthResource;

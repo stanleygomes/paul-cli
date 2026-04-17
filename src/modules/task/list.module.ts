@@ -1,10 +1,10 @@
-import { createApiClient } from "../../api/api";
-import { settingsStore } from "../../store/settings.store";
-import { AuthGuard } from "../../utils/auth-guard.util";
-import { t } from "../../utils/i18n/i18n.util";
-import { Output } from "../../utils/output.util";
-import { Loader } from "../../utils/spinner.util";
-import { TaskFormatter } from "../../utils/format/task-format.util";
+import { createApiClient } from '../../api/api.js';
+import { settingsStore } from '../../store/settings.store.js';
+import { AuthGuard } from '../../utils/auth-guard.util.js';
+import { t } from '../../utils/i18n/i18n.util.js';
+import { Output } from '../../utils/output.util.js';
+import { Loader } from '../../utils/spinner.util.js';
+import { TaskFormatter } from '../../utils/format/task-format.util.js';
 
 export class ListTasksModule {
   public static async getActiveTasks(token: string) {
@@ -23,15 +23,12 @@ export class ListTasksModule {
     if (activeProjectId) {
       tasks = tasks.filter((task) => task.projectId === activeProjectId);
       Output.info(
-        (await t("activeProjectInfo")).replace(
-          "{name}",
-          settings.activeProjectName || "",
-        ),
+        (await t('activeProjectInfo')).replace('{name}', settings.activeProjectName || ''),
       );
     }
 
     if (tasks.length === 0) {
-      Output.info(await t("noTasks"));
+      Output.info(await t('noTasks'));
       return;
     }
 

@@ -1,9 +1,9 @@
-import { createApiClient } from "../../api/api";
-import { AuthGuard } from "../../utils/auth-guard.util";
-import { t } from "../../utils/i18n/i18n.util";
-import { Output } from "../../utils/output.util";
-import { Loader } from "../../utils/spinner.util";
-import { ProjectFormatter } from "../../utils/format/project-format.util";
+import { createApiClient } from '../../api/api.js';
+import { AuthGuard } from '../../utils/auth-guard.util.js';
+import { t } from '../../utils/i18n/i18n.util.js';
+import { Output } from '../../utils/output.util.js';
+import { Loader } from '../../utils/spinner.util.js';
+import { ProjectFormatter } from '../../utils/format/project-format.util.js';
 
 export class ListProjectsModule {
   public static async getActiveProjects(token: string) {
@@ -17,7 +17,7 @@ export class ListProjectsModule {
     const projects = await Loader.run(() => this.getActiveProjects(token));
 
     if (projects.length === 0) {
-      Output.info(await t("noProjects"));
+      Output.info(await t('noProjects'));
       return;
     }
 

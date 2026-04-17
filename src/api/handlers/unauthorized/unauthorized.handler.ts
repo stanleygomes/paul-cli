@@ -1,7 +1,7 @@
-import type { AxiosInstance, AxiosRequestConfig, AxiosError } from "axios";
-import { TokenRefreshFailureModule } from "../../../modules/auth/token-refresh-failure.module";
-import { TokenRefreshModule } from "../../../modules/auth/token-refresh.module";
-import { RequestRetryer } from "../../retry-request";
+import type { AxiosInstance, AxiosRequestConfig, AxiosError } from 'axios';
+import { TokenRefreshFailureModule } from '@modules/auth/token-refresh-failure.module.js';
+import { TokenRefreshModule } from '@modules/auth/token-refresh.module.js';
+import { RequestRetryer } from '../../retry-request.js';
 
 export class UnauthorizedHandler {
   private isRefreshing = false;
@@ -9,16 +9,15 @@ export class UnauthorizedHandler {
 
   constructor(private readonly httpClient: AxiosInstance) {}
 
-  public static isUnauthorizedError(error: any): error is AxiosError {
-    const status = error.response?.status;
-    const url = error.config?.url;
-    const isRetry = error.config?._retry;
+  public static isUnauthorizedError(error: unknown): error is AxiosError {
+    if (!(error instanceof Error) || !('isAxiosError' in error)) return false;
+    const axiosError = error as AxiosError;
+    const status = axiosError.response?.status;
+    const url = axiosError.config?.url;
+    const isRetry = axiosError.config?._retry;
 
     return (
-      status === 401 &&
-      error.config &&
-      !isRetry &&
-      !url?.includes("/v1/auth/refresh-token")
+      status === 401 && !!axiosError.config && !isRetry && !url?.includes('/v1/auth/refresh-token')
     );
   }
 
@@ -26,14 +25,12 @@ export class UnauthorizedHandler {
     if (this.isRefreshing) {
       return new Promise((resolve) => {
         this.addRefreshSubscriber((token: string) => {
-          resolve(
-            RequestRetryer.retry(this.httpClient, originalRequest, token),
-          );
+          resolve(RequestRetryer.retry(this.httpClient, originalRequest, token));
         });
       });
     }
 
-    (originalRequest as any)._retry = true;
+    originalRequest._retry = true;
     this.isRefreshing = true;
 
     try {

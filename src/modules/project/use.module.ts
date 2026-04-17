@@ -1,22 +1,20 @@
-import { settingsStore } from "../../store/settings.store";
-import { AuthGuard } from "../../utils/auth-guard.util";
-import { t } from "../../utils/i18n/i18n.util";
-import { Output } from "../../utils/output.util";
-import { Prompt } from "../../utils/prompt.util";
-import { Loader } from "../../utils/spinner.util";
-import { ListProjectsModule } from "./list.module";
+import { settingsStore } from '../../store/settings.store.js';
+import { AuthGuard } from '../../utils/auth-guard.util.js';
+import { t } from '../../utils/i18n/i18n.util.js';
+import { Output } from '../../utils/output.util.js';
+import { Prompt } from '../../utils/prompt.util.js';
+import { Loader } from '../../utils/spinner.util.js';
+import { ListProjectsModule } from './list.module.js';
 
 export class UseProjectModule {
   public static async run(): Promise<void> {
     const token = await AuthGuard.requireToken();
-    const projects = await Loader.run(() =>
-      ListProjectsModule.getActiveProjects(token),
-    );
+    const projects = await Loader.run(() => ListProjectsModule.getActiveProjects(token));
 
     const choices = [
       {
-        name: await t("none"),
-        value: "none",
+        name: await t('none'),
+        value: 'none',
       },
       ...projects.map((p) => ({
         name: p.name,
@@ -25,13 +23,13 @@ export class UseProjectModule {
     ];
 
     const selectedProjectId = await Prompt.select({
-      messageKey: "selectProjectToUse",
+      messageKey: 'selectProjectToUse',
       choices,
     });
 
-    if (selectedProjectId === "none") {
+    if (selectedProjectId === 'none') {
       await settingsStore.clearActiveProject();
-      Output.success(await t("projectDeactivated"));
+      Output.success(await t('projectDeactivated'));
       return;
     }
 
@@ -39,9 +37,7 @@ export class UseProjectModule {
     if (project) {
       await settingsStore.setActiveProject(project.id, project.name);
 
-      Output.success(
-        (await t("projectActivated")).replace("{name}", project.name),
-      );
+      Output.success((await t('projectActivated')).replace('{name}', project.name));
     }
   }
 }

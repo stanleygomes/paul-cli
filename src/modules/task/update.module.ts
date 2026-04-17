@@ -1,21 +1,18 @@
-import { createApiClient } from "../../api/api";
-import { AuthGuard } from "../../utils/auth-guard.util";
-import { t } from "../../utils/i18n/i18n.util";
-import { Output } from "../../utils/output.util";
-import { Prompt } from "../../utils/prompt.util";
-import { Loader } from "../../utils/spinner.util";
-import { TaskValidator } from "../../validators/task.validators";
-import { ResolveTaskModule } from "./resolve.module";
+import { createApiClient } from '../../api/api.js';
+import { AuthGuard } from '../../utils/auth-guard.util.js';
+import { t } from '../../utils/i18n/i18n.util.js';
+import { Output } from '../../utils/output.util.js';
+import { Prompt } from '../../utils/prompt.util.js';
+import { Loader } from '../../utils/spinner.util.js';
+import { TaskValidator } from '../../validators/task.validators.js';
+import { ResolveTaskModule } from './resolve.module.js';
 
 export class UpdateTaskModule {
-  public static async run(
-    taskIdArg?: string,
-    titleArg?: string,
-  ): Promise<void> {
+  public static async run(taskIdArg?: string, titleArg?: string): Promise<void> {
     const token = await AuthGuard.requireToken();
     const taskId = await ResolveTaskModule.resolveId(taskIdArg);
     const title = await Prompt.ask({
-      messageKey: "askTaskTitle",
+      messageKey: 'askTaskTitle',
       schema: TaskValidator.title,
       initialValue: titleArg,
     });
@@ -28,6 +25,6 @@ export class UpdateTaskModule {
       }),
     );
 
-    Output.success(await t("taskUpdated"));
+    Output.success(await t('taskUpdated'));
   }
 }

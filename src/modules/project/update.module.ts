@@ -1,21 +1,18 @@
-import { createApiClient } from "../../api/api";
-import { AuthGuard } from "../../utils/auth-guard.util";
-import { t } from "../../utils/i18n/i18n.util";
-import { Output } from "../../utils/output.util";
-import { Prompt } from "../../utils/prompt.util";
-import { Loader } from "../../utils/spinner.util";
-import { ProjectValidator } from "../../validators/project.validators";
-import { ResolveProjectModule } from "./resolve.module";
+import { createApiClient } from '../../api/api.js';
+import { AuthGuard } from '../../utils/auth-guard.util.js';
+import { t } from '../../utils/i18n/i18n.util.js';
+import { Output } from '../../utils/output.util.js';
+import { Prompt } from '../../utils/prompt.util.js';
+import { Loader } from '../../utils/spinner.util.js';
+import { ProjectValidator } from '../../validators/project.validators.js';
+import { ResolveProjectModule } from './resolve.module.js';
 
 export class UpdateProjectModule {
-  public static async run(
-    projectIdArg?: string,
-    nameArg?: string,
-  ): Promise<void> {
+  public static async run(projectIdArg?: string, nameArg?: string): Promise<void> {
     const token = await AuthGuard.requireToken();
     const projectId = await ResolveProjectModule.resolveId(projectIdArg);
     const name = await Prompt.ask({
-      messageKey: "askProjectTitle",
+      messageKey: 'askProjectTitle',
       schema: ProjectValidator.name,
       initialValue: nameArg,
     });
@@ -28,6 +25,6 @@ export class UpdateProjectModule {
       }),
     );
 
-    Output.success(await t("projectUpdated"));
+    Output.success(await t('projectUpdated'));
   }
 }

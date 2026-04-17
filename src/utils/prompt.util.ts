@@ -1,7 +1,7 @@
-import { input, select } from "@inquirer/prompts";
-import { t } from "./i18n/i18n.util";
-import type { AskAndParseParams } from "../types/ask-params.type";
-import type { SelectAndParseParams } from "../types/select-params.type";
+import { input, select } from '@inquirer/prompts';
+import { t } from './i18n/i18n.util.js';
+import type { AskAndParseParams } from '../types/ask-params.type.js';
+import type { SelectAndParseParams } from '../types/select-params.type.js';
 
 export class Prompt {
   public static async ask<T>({

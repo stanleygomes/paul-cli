@@ -1,31 +1,21 @@
-import type { Task } from "@paul/entities";
-import { TaskValidator } from "../../validators/task.validators";
-import { BaseResource } from "../base.resource";
+import type { Task } from '@paul/entities';
+import { TaskValidator } from '../../validators/task.validators.js';
+import { BaseResource } from '../base.resource.js';
 
 export class TaskResource extends BaseResource {
   async list(): Promise<Task[]> {
-    const response = await this.client.get<{ tasks: Task[] }>(
-      "/v1/tasks",
-      this.getRequestConfig(),
-    );
+    const response = await this.client.get<{ tasks: Task[] }>('/v1/tasks', this.getRequestConfig());
 
     return TaskValidator.listResponse.parse(response.data).tasks;
   }
 
   async create(task: Record<string, unknown>): Promise<Task> {
-    const response = await this.client.post<Task>(
-      "/v1/tasks",
-      task,
-      this.getRequestConfig(),
-    );
+    const response = await this.client.post<Task>('/v1/tasks', task, this.getRequestConfig());
 
     return response.data;
   }
 
-  async update(
-    taskId: string,
-    payload: Record<string, unknown>,
-  ): Promise<Task> {
+  async update(taskId: string, payload: Record<string, unknown>): Promise<Task> {
     const response = await this.client.put<Task>(
       `/v1/tasks/${taskId}`,
       payload,

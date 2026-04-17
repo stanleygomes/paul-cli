@@ -1,10 +1,10 @@
-import ora from "ora";
-import { t, type DictionaryKey } from "./i18n/i18n.util";
+import ora from 'ora';
+import { t, type DictionaryKey } from './i18n/i18n.util.js';
 
 export class Loader {
   public static async run<T>(
     action: () => Promise<T>,
-    messageKey: DictionaryKey = "loading",
+    messageKey: DictionaryKey = 'loading',
   ): Promise<T> {
     const message = await t(messageKey);
     const spinner = ora(message).start();

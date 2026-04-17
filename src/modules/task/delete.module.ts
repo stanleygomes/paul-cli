@@ -1,9 +1,9 @@
-import { createApiClient } from "../../api/api";
-import { AuthGuard } from "../../utils/auth-guard.util";
-import { t } from "../../utils/i18n/i18n.util";
-import { Output } from "../../utils/output.util";
-import { Loader } from "../../utils/spinner.util";
-import { ResolveTaskModule } from "./resolve.module";
+import { createApiClient } from '../../api/api.js';
+import { AuthGuard } from '../../utils/auth-guard.util.js';
+import { t } from '../../utils/i18n/i18n.util.js';
+import { Output } from '../../utils/output.util.js';
+import { Loader } from '../../utils/spinner.util.js';
+import { ResolveTaskModule } from './resolve.module.js';
 
 export class DeleteTaskModule {
   public static async run(taskIdArg?: string): Promise<void> {
@@ -13,6 +13,6 @@ export class DeleteTaskModule {
     const api = createApiClient(token);
     await Loader.run(() => api.task.delete(taskId));
 
-    Output.success(await t("taskDeleted"));
+    Output.success(await t('taskDeleted'));
   }
 }

@@ -10,7 +10,17 @@
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "types": ["node"]
+    "types": ["node"],
+    "paths": {
+      "@api/*": ["./src/api/*"],
+      "@commands/*": ["./src/commands/*"],
+      "@constants/*": ["./src/constants/*"],
+      "@modules/*": ["./src/modules/*"],
+      "@store/*": ["./src/store/*"],
+      "@types/*": ["./src/types/*"],
+      "@utils/*": ["./src/utils/*"],
+      "@validators/*": ["./src/validators/*"]
+    }
   },
   "include": ["bin/**/*.ts", "src/**/*.ts"],
   "exclude": ["dist", "node_modules"]
