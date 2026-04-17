@@ -47,4 +47,7 @@ export const pt = {
   askNewProjectName: 'Novo nome do projeto',
   projectUpdated: 'Projeto atualizado com sucesso!',
   editProjectCommandDescription: 'Editar um projeto do Todoist',
+  askTaskContent: 'O que precisa ser feito?',
+  taskCreated: 'Tarefa criada com sucesso!',
+  createTaskCommandDescription: 'Criar uma nova tarefa no Todoist',
 } as const;

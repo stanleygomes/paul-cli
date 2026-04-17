@@ -35,4 +35,17 @@ export class TasksService {
 
     return tasks;
   }
+
+  public static async createTask(
+    data: Partial<TodoistTask>,
+    spinner: Ora,
+  ): Promise<TodoistTask | null> {
+    const api = await this.getApiOrExit(spinner);
+    if (!api) return null;
+
+    const task = await api.tasks.create(data);
+    spinner.stop();
+
+    return task;
+  }
 }
