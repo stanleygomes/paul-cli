@@ -1,5 +1,5 @@
-import { input, select, password } from '@inquirer/prompts';
-import { t } from '@utils/i18n/i18n.util.js';
+import { input, select, password, confirm } from '@inquirer/prompts';
+import { t, type DictionaryKey } from '@utils/i18n/i18n.util.js';
 import type { AskAndParseParams } from '../types/ask-params.type.js';
 import type { SelectAndParseParams } from '../types/select-params.type.js';
 
@@ -36,5 +36,10 @@ export class Prompt {
       message,
       choices,
     });
+  }
+
+  public static async confirm(messageKey: DictionaryKey): Promise<boolean> {
+    const message = await t(messageKey);
+    return confirm({ message, default: false });
   }
 }

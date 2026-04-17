@@ -13,4 +13,7 @@ export const pt = {
   configTokenLabel: 'Token da API',
   configAgentLabel: 'Agente de IA',
   configNotFound: 'Nenhuma configuração encontrada. Use "paul init" para configurar.',
+  configResetConfirm: 'Tem certeza que deseja apagar todas as configurações?',
+  configResetSuccess: 'Todas as configurações foram apagadas.',
+  configResetCanceled: 'Ação cancelada.',
 } as const;

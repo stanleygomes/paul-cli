@@ -13,4 +13,7 @@ export const en = {
   configTokenLabel: 'API Token',
   configAgentLabel: 'AI Agent',
   configNotFound: 'No configurations found. Use "paul init" to configure.',
+  configResetConfirm: 'Are you sure you want to delete all settings?',
+  configResetSuccess: 'All settings have been cleared.',
+  configResetCanceled: 'Action canceled.',
 } as const;

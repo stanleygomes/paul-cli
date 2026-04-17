@@ -15,4 +15,12 @@ export class JsonStorage {
     await fs.mkdir(path.dirname(filePath), { recursive: true });
     await fs.writeFile(filePath, JSON.stringify(value, null, 2), 'utf8');
   }
+
+  public static async delete(filePath: string): Promise<void> {
+    try {
+      await fs.unlink(filePath);
+    } catch {
+      // Ignore if file doesn't exist
+    }
+  }
 }

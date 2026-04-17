@@ -1,6 +1,7 @@
 import { BaseCommand } from '@commands/base.command.js';
 import { SetLanguageModule } from '@modules/config/set-language.module.js';
 import { ListConfigModule } from '@modules/config/list-config.module.js';
+import { ResetConfigModule } from '@modules/config/reset-config.module.js';
 
 export class ConfigCommand extends BaseCommand {
   public register(): void {
@@ -17,5 +18,11 @@ export class ConfigCommand extends BaseCommand {
       .description('Change language (en|pt)')
       .argument('[language]', 'Language code')
       .action(SetLanguageModule.run);
+
+    config
+      .command('reset')
+      .alias('logout')
+      .description('Delete all settings and logout')
+      .action(ResetConfigModule.run);
   }
 }
