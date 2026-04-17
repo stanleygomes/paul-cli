@@ -3,6 +3,7 @@
 import { Command } from 'commander';
 import { InitCommand } from '@commands/init.command.js';
 import { SettingsCommand } from '@commands/settings.command.js';
+import { ConfigCommand } from '@commands/config.command.js';
 import { Output } from '@utils/output.util.js';
 import { I18n, t } from '@utils/i18n/i18n.util.js';
 import { HttpManager } from '@api/config/http.config.js';
@@ -21,7 +22,11 @@ async function run() {
       Output.banner(await t('bannerSubtitle'));
     });
 
-  const commands = [new InitCommand(program), new SettingsCommand(program)];
+  const commands = [
+    new InitCommand(program),
+    new SettingsCommand(program),
+    new ConfigCommand(program),
+  ];
 
   commands.forEach((cmd) => cmd.register());
 
