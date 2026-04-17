@@ -12,6 +12,8 @@
     "forceConsistentCasingInFileNames": true,
     "types": ["node"],
     "paths": {
+      "@index": ["./src/index.ts"],
+      "@environment": ["./src/environment.ts"],
       "@api/*": ["./src/api/*"],
       "@commands/*": ["./src/commands/*"],
       "@constants/*": ["./src/constants/*"],

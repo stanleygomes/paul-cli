@@ -1,5 +1,5 @@
-import { InitModule } from '../modules/init/init.module.js';
-import { BaseCommand } from './base.command.js';
+import { InitModule } from '@modules/init/init.module.js';
+import { BaseCommand } from '@commands/base.command.js';
 
 export class InitCommand extends BaseCommand {
   public register(): void {

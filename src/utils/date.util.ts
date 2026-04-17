@@ -1,6 +1,6 @@
 import { format } from 'date-fns';
 import { ptBR, enUS } from 'date-fns/locale';
-import { I18n } from './i18n/i18n.util.js';
+import { I18n } from '@utils/i18n/i18n.util.js';
 
 export class DateUtil {
   private static getLocale() {

@@ -1,5 +1,5 @@
 import type { Language } from '../../types/language.type.js';
-import { configStore } from '../../store/config.store.js';
+import { configStore } from '@store/config.store.js';
 
 import { en } from './locales/en.js';
 import { pt } from './locales/pt.js';

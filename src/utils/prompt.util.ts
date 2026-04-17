@@ -1,5 +1,5 @@
 import { input, select, password } from '@inquirer/prompts';
-import { t } from './i18n/i18n.util.js';
+import { t } from '@utils/i18n/i18n.util.js';
 import type { AskAndParseParams } from '../types/ask-params.type.js';
 import type { SelectAndParseParams } from '../types/select-params.type.js';
 

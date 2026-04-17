@@ -1,8 +1,8 @@
-import { ConfigValidator } from '../../validators/config.validators.js';
-import { I18n, t } from '../../utils/i18n/i18n.util.js';
+import { ConfigValidator } from '@validators/config.validators.js';
+import { I18n, t } from '@utils/i18n/i18n.util.js';
 
-import { configStore } from '../../store/config.store.js';
-import { Output } from '../../utils/output.util.js';
+import { configStore } from '@store/config.store.js';
+import { Output } from '@utils/output.util.js';
 import { AskLanguageModule } from './ask-language.module.js';
 
 export class SetLanguageModule {

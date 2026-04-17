@@ -1,4 +1,4 @@
-import type { AxiosRequestConfig } from '../utils/http.util.js';
+import type { AxiosRequestConfig } from '@utils/http.util.js';
 import type { HttpClient } from '../types/http.type.js';
 
 export abstract class BaseResource {

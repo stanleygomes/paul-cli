@@ -27,7 +27,7 @@
   ],
   "scripts": {
     "dev": "tsx src/index.ts",
-    "build": "rm -rf dist && tsc",
+    "build": "rm -rf dist && tsc && tsc-alias",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "check-types": "tsc --noEmit",
@@ -60,6 +60,7 @@
     "globals": "^17.5.0",
     "husky": "^9.1.7",
     "prettier": "^3.8.3",
+    "tsc-alias": "^1.8.16",
     "tsup": "^8.5.1",
     "tsx": "^4.21.0",
     "typescript": "^6.0.2"

@@ -1,4 +1,4 @@
-import type { AxiosRequestConfig, AxiosResponse } from '../utils/http.util.js';
+import type { AxiosRequestConfig, AxiosResponse } from '@utils/http.util.js';
 
 export interface HttpClient {
   get: <T>(url: string, config?: AxiosRequestConfig) => Promise<AxiosResponse<T>>;

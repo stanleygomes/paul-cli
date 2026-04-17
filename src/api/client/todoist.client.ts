@@ -1,4 +1,4 @@
-import { httpClient, type AxiosRequestConfig, type AxiosResponse } from '../../utils/http.util.js';
+import { httpClient, type AxiosRequestConfig, type AxiosResponse } from '@utils/http.util.js';
 import { TODOIST_API_URL } from '../../environment.js';
 
 export class TodoistHttpClient {

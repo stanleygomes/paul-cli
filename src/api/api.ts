@@ -1,6 +1,6 @@
-import { TODOIST_API_TOKEN } from '../environment.js';
-import { todoistClient } from './client/todoist.client.js';
-import { TodoistResource } from './resources/todoist.resource.js';
+import { TODOIST_API_TOKEN } from '@environment';
+import { todoistClient } from '@api/client/todoist.client.js';
+import { TodoistResource } from '@api/resources/todoist.resource.js';
 
 export class ApiClient {
   public readonly todoist: TodoistResource;
