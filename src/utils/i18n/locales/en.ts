@@ -1,6 +1,8 @@
 export const en = {
   bannerSubtitle: 'Your terminal task assistant',
-  languageUpdated: 'Language updated.',
+  languageUpdated: 'Language updated successfully.',
+  apiKeyUpdated: 'API Key updated successfully.',
+  aiAgentUpdated: 'AI Agent updated successfully.',
   loading: 'Loading...',
   none: 'None',
   askApiKey: 'Your Todoist API Key',
