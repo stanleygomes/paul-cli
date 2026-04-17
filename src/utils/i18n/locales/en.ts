@@ -32,4 +32,7 @@ export const en = {
   askDebugMode: 'Do you want to enable debug mode?',
   debugUpdated: 'Debug mode updated successfully.',
   authError: 'Authentication error. Please check if your token is correct.',
+  selectDefaultProject: 'Select the default project for your tasks',
+  defaultProjectUpdated: 'Default project updated successfully.',
+  projectDefaultCommandDescription: 'Configure the default Todoist project',
 } as const;

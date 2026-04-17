@@ -7,4 +7,5 @@ export interface CliConfig {
   aiAgent: AiAgent;
   language: Language;
   debug?: boolean;
+  defaultProjectId?: string;
 }
