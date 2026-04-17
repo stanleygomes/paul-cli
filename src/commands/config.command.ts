@@ -1,32 +1,21 @@
-import { configStore } from '@store/config.store.js';
 import { BaseCommand } from '@commands/base.command.js';
-import { Output } from '@utils/output.util.js';
-import { MaskUtil } from '@utils/mask.util.js';
-import { t } from '@utils/i18n/i18n.util.js';
+import { SetLanguageModule } from '@modules/config/set-language.module.js';
+import { ListConfigModule } from '@modules/config/list-config.module.js';
 
 export class ConfigCommand extends BaseCommand {
   public register(): void {
-    this.program
-      .command('config')
+    const config = this.program.command('config').description('Manage CLI configuration');
+
+    config
+      .command('list')
+      .alias('ls')
       .description('Show current settings')
-      .action(async () => {
-        const config = await configStore.get();
+      .action(ListConfigModule.run);
 
-        if (!config) {
-          Output.error(await t('configNotFound'));
-          return;
-        }
-
-        const maskedToken = MaskUtil.mask(config.apiKey);
-
-        const details = [
-          `${await t('configLanguageLabel')}: ${config.language}`,
-          `${await t('configAgentLabel')}: ${config.aiAgent}`,
-          `${await t('configTokenLabel')}: ${maskedToken}`,
-        ];
-
-        Output.info(await t('configListTitle'));
-        details.forEach((detail) => Output.info(`  • ${detail}`));
-      });
+    config
+      .command('language')
+      .description('Change language (en|pt)')
+      .argument('[language]', 'Language code')
+      .action(SetLanguageModule.run);
   }
 }

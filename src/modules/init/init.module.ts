@@ -5,7 +5,7 @@ import { Output } from '@utils/output.util.js';
 import { Prompt } from '@utils/prompt.util.js';
 import { ConfigValidator } from '@validators/config.validators.js';
 import { AI_AGENT_CHOICES } from '@constants/ai-agents.constant.js';
-import { AskLanguageModule } from '../settings/ask-language.module.js';
+import { AskLanguageModule } from '@modules/config/ask-language.module.js';
 
 export class InitModule {
   public static async run(): Promise<void> {
