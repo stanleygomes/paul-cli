@@ -42,4 +42,14 @@ export class ProjectsService {
 
     return project;
   }
+
+  public static async deleteProject(id: string, spinner: Ora): Promise<boolean> {
+    const api = await this.getApiOrExit(spinner);
+    if (!api) return false;
+
+    await api.projects.delete(id);
+    spinner.stop();
+
+    return true;
+  }
 }

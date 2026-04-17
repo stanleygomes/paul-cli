@@ -38,4 +38,8 @@ export const en = {
   askProjectName: 'Name of the new project',
   projectCreated: 'Project created successfully!',
   createProjectCommandDescription: 'Create a new project in Todoist',
+  askDeleteProject: 'Select a project to delete',
+  deleteProjectConfirm: 'Are you sure you want to delete the project "{name}"?',
+  projectDeleted: 'Project deleted successfully!',
+  deleteProjectCommandDescription: 'Delete a Todoist project',
 } as const;

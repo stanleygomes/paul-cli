@@ -38,8 +38,13 @@ export class Prompt {
     });
   }
 
-  public static async confirm(messageKey: DictionaryKey): Promise<boolean> {
-    const message = await t(messageKey);
-    return confirm({ message, default: false });
+  public static async confirm(
+    params: DictionaryKey | { message: string; default?: boolean },
+  ): Promise<boolean> {
+    if (typeof params === 'string') {
+      const message = await t(params);
+      return confirm({ message, default: false });
+    }
+    return confirm({ message: params.message, default: params.default ?? false });
   }
 }

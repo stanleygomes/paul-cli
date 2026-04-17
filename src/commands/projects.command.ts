@@ -2,6 +2,7 @@ import { BaseCommand } from './base.command.js';
 import { ProjectsModule } from '../modules/projects/list-projects.module.js';
 import { SetDefaultProjectModule } from '../modules/projects/set-default-project.module.js';
 import { CreateProjectModule } from '../modules/projects/create-project.module.js';
+import { DeleteProjectModule } from '../modules/projects/delete-project.module.js';
 import { t } from '../utils/i18n/i18n.util.js';
 
 export class ProjectsCommand extends BaseCommand {
@@ -26,6 +27,14 @@ export class ProjectsCommand extends BaseCommand {
       .description(await t('createProjectCommandDescription'))
       .action(async () => {
         await CreateProjectModule.run();
+      });
+
+    projects
+      .command('delete')
+      .alias('rm')
+      .description(await t('deleteProjectCommandDescription'))
+      .action(async () => {
+        await DeleteProjectModule.run();
       });
   }
 }

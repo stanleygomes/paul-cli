@@ -19,4 +19,8 @@ export class ProjectsResource extends BaseResource {
     );
     return response.data;
   }
+
+  async delete(id: string): Promise<void> {
+    await this.client.delete(`/projects/${id}`, this.getRequestConfig());
+  }
 }
