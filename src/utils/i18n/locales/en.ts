@@ -27,4 +27,5 @@ export const en = {
     'Could not fetch tasks. Please check your connection and the configured token.',
   askDebugMode: 'Do you want to enable debug mode?',
   debugUpdated: 'Debug mode updated successfully.',
+  authError: 'Authentication error. Please check if your token is correct.',
 } as const;

@@ -27,4 +27,5 @@ export const pt = {
     'Não foi possível buscar as tarefas. Verifique sua conexão e o token configurado.',
   askDebugMode: 'Deseja habilitar o modo debug?',
   debugUpdated: 'Modo debug atualizado com sucesso.',
+  authError: 'Erro de autenticação. Verifique se o seu token está correto.',
 } as const;
