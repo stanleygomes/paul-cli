@@ -42,4 +42,8 @@ export const en = {
   deleteProjectConfirm: 'Are you sure you want to delete the project "{name}"?',
   projectDeleted: 'Project deleted successfully!',
   deleteProjectCommandDescription: 'Delete a Todoist project',
+  askEditProject: 'Select a project to edit',
+  askNewProjectName: 'New project name',
+  projectUpdated: 'Project updated successfully!',
+  editProjectCommandDescription: 'Edit a Todoist project',
 } as const;

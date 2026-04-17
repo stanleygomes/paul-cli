@@ -52,4 +52,18 @@ export class ProjectsService {
 
     return true;
   }
+
+  public static async updateProject(
+    id: string,
+    name: string,
+    spinner: Ora,
+  ): Promise<TodoistProject | null> {
+    const api = await this.getApiOrExit(spinner);
+    if (!api) return null;
+
+    const project = await api.projects.update(id, name);
+    spinner.stop();
+
+    return project;
+  }
 }

@@ -42,4 +42,8 @@ export const pt = {
   deleteProjectConfirm: 'Tem certeza que deseja excluir o projeto "{name}"?',
   projectDeleted: 'Projeto excluído com sucesso!',
   deleteProjectCommandDescription: 'Excluir um projeto do Todoist',
+  askEditProject: 'Selecione o projeto para editar',
+  askNewProjectName: 'Novo nome do projeto',
+  projectUpdated: 'Projeto atualizado com sucesso!',
+  editProjectCommandDescription: 'Editar um projeto do Todoist',
 } as const;
