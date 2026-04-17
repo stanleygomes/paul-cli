@@ -33,10 +33,13 @@ export class SetDefaultProjectModule {
         choices,
       });
 
-      await configStore.save({
-        ...config,
-        defaultProjectId,
-      });
+      const selectedProject = projects.find((p) => p.id === defaultProjectId);
+
+      const defaultProject = selectedProject
+        ? { id: selectedProject.id, name: selectedProject.name }
+        : undefined;
+
+      await configStore.save({ ...config, defaultProject });
 
       Output.success(await t('defaultProjectUpdated'));
     } catch (error) {

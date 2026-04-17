@@ -2,7 +2,6 @@ import { configStore } from '@store/config.store.js';
 import { DictionaryKey, t } from '@utils/i18n/i18n.util.js';
 import ora from 'ora';
 import { TasksService } from '../../services/tasks.service.js';
-import { ProjectsService } from '../../services/projects.service.js';
 import { TasksRender } from '../../render/tasks.render.js';
 
 export class TasksModule {
@@ -11,19 +10,10 @@ export class TasksModule {
     const spinner = ora(await t('fetchingTasks')).start();
 
     try {
-      const tasks = await TasksService.getTasksOrExit(spinner, config?.defaultProjectId);
+      const tasks = await TasksService.getTasksOrExit(spinner, config?.defaultProject?.id);
       if (!tasks) return;
 
-      let projectName: string | undefined;
-
-      if (config?.defaultProjectId) {
-        const projectsSpinner = ora(await t('fetchingProjects')).start();
-        const projects = await ProjectsService.getProjectsOrExit(projectsSpinner);
-        const project = projects?.find((p) => p.id === config.defaultProjectId);
-        projectName = project?.name;
-      }
-
-      await TasksRender.list(tasks, projectName);
+      await TasksRender.list(tasks, config?.defaultProject?.name);
     } catch (error) {
       spinner.stop();
 

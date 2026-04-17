@@ -5,8 +5,7 @@ import { t } from '@utils/i18n/i18n.util.js';
 import { TaskValidator } from '@validators/task.validators.js';
 import ora from 'ora';
 import { TasksService } from '../../services/tasks.service.js';
-import { ProjectsService } from '../../services/projects.service.js';
-import chalk from 'chalk';
+import { ProjectsRender } from '../../render/projects.render.js';
 
 export class CreateTaskModule {
   public static async run(): Promise<void> {
@@ -17,21 +16,7 @@ export class CreateTaskModule {
       return;
     }
 
-    if (config.defaultProjectId) {
-      const spinnerProjects = ora(await t('fetchingProjects')).start();
-      try {
-        const projects = await ProjectsService.getProjectsOrExit(spinnerProjects);
-        const project = projects?.find((p) => p.id === config.defaultProjectId);
-
-        if (project) {
-          Output.info(`${await t('projectName')}: ${chalk.cyan.bold(project.name)}`);
-        }
-      } catch {
-        spinnerProjects.stop();
-      }
-    } else {
-      Output.info(`${await t('projectName')}: ${chalk.gray('Inbox')}`);
-    }
+    await ProjectsRender.selectedProject(config.defaultProject?.name);
 
     const content = await Prompt.ask<string>({
       messageKey: 'askTaskContent',
@@ -46,7 +31,7 @@ export class CreateTaskModule {
       const task = await TasksService.createTask(
         {
           content,
-          project_id: config.defaultProjectId,
+          project_id: config.defaultProject?.id,
         },
         spinner,
       );
