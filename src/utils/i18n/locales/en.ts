@@ -19,9 +19,13 @@ export const en = {
   configResetSuccess: 'All settings have been cleared.',
   configResetCanceled: 'Action canceled.',
   fetchingTasks: 'Fetching tasks...',
+  fetchingProjects: 'Fetching projects...',
   noTasksFound: 'No tasks found.',
+  noProjectsFound: 'No projects found.',
   tasksListTitle: 'My Tasks',
+  projectsListTitle: 'My Projects',
   tasksCommandDescription: 'List Todoist tasks',
+  projectsCommandDescription: 'List Todoist projects',
   apiKeyNotFound: 'API Key not found. Use "paul init" to configure.',
   errorFetchingTasks:
     'Could not fetch tasks. Please check your connection and the configured token.',

@@ -17,6 +17,8 @@ export class InitModule {
       schema: ConfigValidator.apiKey,
     });
 
+    // de opcao do usuario escolher nenhum agente
+    // escreva uma mensagem informando para que serve essa funcionalidade de agente (para ajudar na gestao de tarefas)
     const aiAgent = await Prompt.select<AiAgent>({
       messageKey: 'askAiAgent',
       choices: AI_AGENT_CHOICES,
