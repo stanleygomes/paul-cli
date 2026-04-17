@@ -5,18 +5,24 @@ import { t } from '@utils/i18n/i18n.util.js';
 import type { TodoistProject } from '../types/todoist-project.type.js';
 import type { Ora } from 'ora';
 
+import type { ApiClient } from '@api/api.js';
+
 export class ProjectsService {
-  public static async getProjectsOrExit(spinner: Ora): Promise<TodoistProject[] | null> {
+  private static async getApiOrExit(spinner?: Ora): Promise<ApiClient | null> {
     const config = await configStore.get();
     if (!config?.apiKey) {
-      spinner.stop();
+      spinner?.stop();
       Output.error(await t('apiKeyNotFound'));
       return null;
     }
+    return createApiClient(config.apiKey);
+  }
 
-    const api = createApiClient(config.apiKey);
+  public static async getProjectsOrExit(spinner: Ora): Promise<TodoistProject[] | null> {
+    const api = await this.getApiOrExit(spinner);
+    if (!api) return null;
+
     const projects = await api.projects.list();
-
     spinner.stop();
 
     if (projects.length === 0) {
@@ -25,5 +31,15 @@ export class ProjectsService {
     }
 
     return projects;
+  }
+
+  public static async createProject(name: string, spinner: Ora): Promise<TodoistProject | null> {
+    const api = await this.getApiOrExit(spinner);
+    if (!api) return null;
+
+    const project = await api.projects.create(name);
+    spinner.stop();
+
+    return project;
   }
 }

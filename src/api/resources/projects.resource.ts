@@ -10,4 +10,13 @@ export class ProjectsResource extends BaseResource {
     );
     return response.data.results;
   }
+
+  async create(name: string): Promise<TodoistProject> {
+    const response = await this.client.post<TodoistProject>(
+      '/projects',
+      { name },
+      this.getRequestConfig(),
+    );
+    return response.data;
+  }
 }

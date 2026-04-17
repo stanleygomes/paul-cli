@@ -35,4 +35,7 @@ export const en = {
   selectDefaultProject: 'Select the default project for your tasks',
   defaultProjectUpdated: 'Default project updated successfully.',
   projectDefaultCommandDescription: 'Configure the default Todoist project',
+  askProjectName: 'Name of the new project',
+  projectCreated: 'Project created successfully!',
+  createProjectCommandDescription: 'Create a new project in Todoist',
 } as const;
