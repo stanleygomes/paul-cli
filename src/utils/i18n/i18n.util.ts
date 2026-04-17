@@ -1,5 +1,5 @@
 import type { Language } from '../../types/language.type.js';
-import { settingsStore } from '../../store/settings.store.js';
+import { configStore } from '../../store/config.store.js';
 
 import { en } from './locales/en.js';
 import { pt } from './locales/pt.js';
@@ -21,8 +21,8 @@ export class I18n {
 
   public static async initialize(): Promise<void> {
     if (!I18n.currentLanguage) {
-      const settings = await settingsStore.get();
-      I18n.currentLanguage = settings.language;
+      const config = await configStore.get();
+      I18n.currentLanguage = config?.language ?? 'en';
     }
   }
 
@@ -34,6 +34,10 @@ export class I18n {
 
   public static setLanguage(language: Language): void {
     I18n.currentLanguage = language;
+  }
+
+  public static get language(): Language {
+    return I18n.currentLanguage ?? 'en';
   }
 
   public static getLabel(language: Language): string {

@@ -30,4 +30,8 @@ export const en = {
   logoutSuccess: 'Logout completed successfully.',
   sessionExpired: 'Your session has expired. Please login again.',
   loginAgain: "Please run 'paul login' to authenticate.",
+  askApiKey: 'Your Todoist API Key',
+  askAiAgent: 'Select your favorite AI Agent',
+  initSuccess: 'Initial configuration completed successfully!',
+  selectLanguage: 'Select language',
 } as const;

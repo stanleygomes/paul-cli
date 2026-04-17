@@ -1,10 +1,7 @@
 #!/usr/bin/env node
 
 import { Command } from 'commander';
-import { LoginCommand } from './commands/login.command.js';
-import { LogoutCommand } from './commands/logout.command.js';
-import { TaskCommand } from './commands/task.command.js';
-import { ProjectCommand } from './commands/project.command.js';
+import { InitCommand } from './commands/init.command.js';
 import { SettingsCommand } from './commands/settings.command.js';
 import { Output } from './utils/output.util.js';
 import { I18n, t } from './utils/i18n/i18n.util.js';
@@ -24,13 +21,7 @@ async function run() {
       Output.banner(await t('bannerSubtitle'));
     });
 
-  const commands = [
-    new LoginCommand(program),
-    new LogoutCommand(program),
-    new TaskCommand(program),
-    new ProjectCommand(program),
-    new SettingsCommand(program),
-  ];
+  const commands = [new InitCommand(program), new SettingsCommand(program)];
 
   commands.forEach((cmd) => cmd.register());
 

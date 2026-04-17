@@ -1,6 +1,6 @@
 import type { AxiosInstance, AxiosRequestConfig, AxiosError } from 'axios';
-import { TokenRefreshFailureModule } from '@modules/auth/token-refresh-failure.module.js';
-import { TokenRefreshModule } from '@modules/auth/token-refresh.module.js';
+// import { TokenRefreshFailureModule } from '@modules/auth/token-refresh-failure.module.js';
+// import { TokenRefreshModule } from '@modules/auth/token-refresh.module.js';
 import { RequestRetryer } from '../../retry-request.js';
 
 export class UnauthorizedHandler {
@@ -34,13 +34,13 @@ export class UnauthorizedHandler {
     this.isRefreshing = true;
 
     try {
-      const newToken = await TokenRefreshModule.run();
-      this.onRefreshed(newToken);
+      // const newToken = await TokenRefreshModule.run();
+      // this.onRefreshed(newToken);
       this.isRefreshing = false;
-      return RequestRetryer.retry(this.httpClient, originalRequest, newToken);
+      // return RequestRetryer.retry(this.httpClient, originalRequest, newToken);
     } catch (error) {
       this.isRefreshing = false;
-      await TokenRefreshFailureModule.run();
+      // await TokenRefreshFailureModule.run();
       return Promise.reject(error);
     }
   }

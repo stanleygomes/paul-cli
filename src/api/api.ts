@@ -5,9 +5,9 @@ import { TodoistResource } from './resources/todoist.resource.js';
 export class ApiClient {
   public readonly todoist: TodoistResource;
 
-  constructor(token?: string) {
+  constructor(_token?: string) {
     this.todoist = new TodoistResource(todoistClient, TODOIST_API_TOKEN);
   }
 }
 
-export const createApiClient = (token?: string) => new ApiClient(token);
+export const createApiClient = (_token?: string) => new ApiClient(_token);
