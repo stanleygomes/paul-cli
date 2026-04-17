@@ -4,6 +4,7 @@ import { SetApiKeyModule } from '@modules/config/set-api-key.module.js';
 import { SetAiAgentModule } from '@modules/config/set-ai-agent.module.js';
 import { ListConfigModule } from '@modules/config/list-config.module.js';
 import { ResetConfigModule } from '@modules/config/reset-config.module.js';
+import { SetDebugModule } from '@modules/config/set-debug.module.js';
 
 export class ConfigCommand extends BaseCommand {
   public register(): void {
@@ -33,6 +34,11 @@ export class ConfigCommand extends BaseCommand {
       .description('Update favorite AI Agent')
       .argument('[agent]', 'AI Agent name')
       .action(SetAiAgentModule.run);
+
+    config
+      .command('debug')
+      .description('Toggle debug mode to show technical errors')
+      .action(SetDebugModule.run);
 
     config
       .command('reset')

@@ -26,6 +26,7 @@ export class InitModule {
       apiKey,
       aiAgent,
       language,
+      debug: false,
     };
 
     await configStore.save(config);

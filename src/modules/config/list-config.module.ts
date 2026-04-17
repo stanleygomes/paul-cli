@@ -18,6 +18,7 @@ export class ListConfigModule {
       `${await t('configLanguageLabel')}: ${configData.language}`,
       `${await t('configAgentLabel')}: ${configData.aiAgent}`,
       `${await t('configTokenLabel')}: ${maskedToken}`,
+      `Debug Mode: ${configData.debug ? 'ENABLED' : 'DISABLED'}`,
     ];
 
     Output.info(await t('configListTitle'));

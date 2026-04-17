@@ -16,7 +16,7 @@ export class TasksModule {
     const spinner = ora(await t('fetchingTasks')).start();
 
     try {
-      const todoist = new TodoistIntegration(config.apiKey);
+      const todoist = new TodoistIntegration(config.apiKey, config.debug);
       const tasks = await todoist.getTasks();
 
       spinner.stop();

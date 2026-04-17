@@ -25,4 +25,6 @@ export const en = {
   apiKeyNotFound: 'API Key not found. Use "paul init" to configure.',
   errorFetchingTasks:
     'Could not fetch tasks. Please check your connection and the configured token.',
+  askDebugMode: 'Do you want to enable debug mode?',
+  debugUpdated: 'Debug mode updated successfully.',
 } as const;

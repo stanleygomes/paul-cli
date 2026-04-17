@@ -6,4 +6,5 @@ export interface CliConfig {
   apiKey: string;
   aiAgent: AiAgent;
   language: Language;
+  debug?: boolean;
 }
