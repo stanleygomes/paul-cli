@@ -18,4 +18,11 @@ export const en = {
   configResetConfirm: 'Are you sure you want to delete all settings?',
   configResetSuccess: 'All settings have been cleared.',
   configResetCanceled: 'Action canceled.',
+  fetchingTasks: 'Fetching tasks...',
+  noTasksFound: 'No tasks found.',
+  tasksListTitle: 'My Tasks',
+  tasksCommandDescription: 'List Todoist tasks',
+  apiKeyNotFound: 'API Key not found. Use "paul init" to configure.',
+  errorFetchingTasks:
+    'Could not fetch tasks. Please check your connection and the configured token.',
 } as const;

@@ -17,6 +17,7 @@
       "@api/*": ["./src/api/*"],
       "@commands/*": ["./src/commands/*"],
       "@constants/*": ["./src/constants/*"],
+      "@integrations/*": ["./src/integrations/*"],
       "@modules/*": ["./src/modules/*"],
       "@store/*": ["./src/store/*"],
       "@types/*": ["./src/types/*"],

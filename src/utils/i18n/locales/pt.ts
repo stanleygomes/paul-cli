@@ -18,4 +18,11 @@ export const pt = {
   configResetConfirm: 'Tem certeza que deseja apagar todas as configurações?',
   configResetSuccess: 'Todas as configurações foram apagadas.',
   configResetCanceled: 'Ação cancelada.',
+  fetchingTasks: 'Buscando tarefas...',
+  noTasksFound: 'Nenhuma tarefa encontrada.',
+  tasksListTitle: 'Minhas Tarefas',
+  tasksCommandDescription: 'Listar tarefas do Todoist',
+  apiKeyNotFound: 'API Key não encontrada. Use "paul init" para configurar.',
+  errorFetchingTasks:
+    'Não foi possível buscar as tarefas. Verifique sua conexão e o token configurado.',
 } as const;

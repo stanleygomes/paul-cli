@@ -35,4 +35,8 @@ export class Output {
   public static error(message: string): void {
     console.error(chalk.red(`✖ ${message}`));
   }
+
+  public static log(message: string): void {
+    console.log(message);
+  }
 }
