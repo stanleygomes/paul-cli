@@ -1,4 +1,4 @@
-import { TodoistIntegration } from '@integrations/todoist/todoist.integration.js';
+import { createApiClient } from '@api/api.js';
 import { configStore } from '@store/config.store.js';
 import { Output } from '@utils/output.util.js';
 import { DictionaryKey, t } from '@utils/i18n/i18n.util.js';
@@ -13,11 +13,16 @@ export class TasksModule {
       return;
     }
 
+    if (config.debug) {
+      const masked = `${config.apiKey.substring(0, 4)}...${config.apiKey.substring(config.apiKey.length - 4)}`;
+      console.log(`[DEBUG] Requesting Todoist API with token: ${masked}`);
+    }
+
     const spinner = ora(await t('fetchingTasks')).start();
 
     try {
-      const todoist = new TodoistIntegration(config.apiKey, config.debug);
-      const tasks = await todoist.getTasks();
+      const api = createApiClient(config.apiKey);
+      const tasks = await api.tasks.list();
 
       spinner.stop();
 
@@ -32,6 +37,12 @@ export class TasksModule {
         Output.log(`${task.checked ? '✔' : '☐'} ${task.content} (${priority})`);
       });
     } catch (error) {
+      spinner.stop();
+
+      if (config?.debug) {
+        console.error('[DEBUG] Full Error Object:', error);
+      }
+
       const messageKey = (
         error instanceof Error ? error.message : 'errorFetchingTasks'
       ) as DictionaryKey;
