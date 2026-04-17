@@ -39,6 +39,7 @@
     "prepare": "husky"
   },
   "dependencies": {
+    "@doist/todoist-sdk": "^9.1.3",
     "@inquirer/prompts": "^8.0.1",
     "axios": "^1.13.6",
     "boxen": "^8.0.1",

@@ -1,9 +1,9 @@
 import { httpClient, type AxiosRequestConfig, type AxiosResponse } from '@utils/http.util.js';
-import { AUTH_API_URL } from '../../environment.js';
+import { TODOIST_API_URL } from '../../environment.js';
 
-export class AuthHttpClient {
+export class TodoistHttpClient {
   public get<T>(url: string, config?: AxiosRequestConfig): Promise<AxiosResponse<T>> {
-    return httpClient.get<T>(`${AUTH_API_URL}${url}`, config);
+    return httpClient.get<T>(`${TODOIST_API_URL}${url}`, config);
   }
 
   public post<T>(
@@ -11,7 +11,7 @@ export class AuthHttpClient {
     data?: unknown,
     config?: AxiosRequestConfig,
   ): Promise<AxiosResponse<T>> {
-    return httpClient.post<T>(`${AUTH_API_URL}${url}`, data, config);
+    return httpClient.post<T>(`${TODOIST_API_URL}${url}`, data, config);
   }
 
   public put<T>(
@@ -19,7 +19,7 @@ export class AuthHttpClient {
     data?: unknown,
     config?: AxiosRequestConfig,
   ): Promise<AxiosResponse<T>> {
-    return httpClient.put<T>(`${AUTH_API_URL}${url}`, data, config);
+    return httpClient.put<T>(`${TODOIST_API_URL}${url}`, data, config);
   }
 
   public patch<T>(
@@ -27,12 +27,12 @@ export class AuthHttpClient {
     data?: unknown,
     config?: AxiosRequestConfig,
   ): Promise<AxiosResponse<T>> {
-    return httpClient.patch<T>(`${AUTH_API_URL}${url}`, data, config);
+    return httpClient.patch<T>(`${TODOIST_API_URL}${url}`, data, config);
   }
 
   public delete<T>(url: string, config?: AxiosRequestConfig): Promise<AxiosResponse<T>> {
-    return httpClient.delete<T>(`${AUTH_API_URL}${url}`, config);
+    return httpClient.delete<T>(`${TODOIST_API_URL}${url}`, config);
   }
 }
 
-export const authClient = new AuthHttpClient();
+export const todoistClient = new TodoistHttpClient();

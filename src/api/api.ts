@@ -1,18 +1,12 @@
-import { authClient } from './client/auth.client.js';
-import { coreClient } from './client/core.client.js';
-import { AuthResource } from './resources/auth.resource.js';
-import { ProjectResource } from './resources/project.resource.js';
-import { TaskResource } from './resources/task.resource.js';
+import { TODOIST_API_TOKEN } from '../environment.js';
+import { todoistClient } from './client/todoist.client.js';
+import { TodoistResource } from './resources/todoist.resource.js';
 
 export class ApiClient {
-  public readonly auth: AuthResource;
-  public readonly project: ProjectResource;
-  public readonly task: TaskResource;
+  public readonly todoist: TodoistResource;
 
   constructor(token?: string) {
-    this.auth = new AuthResource(authClient, token);
-    this.project = new ProjectResource(coreClient, token);
-    this.task = new TaskResource(coreClient, token);
+    this.todoist = new TodoistResource(todoistClient, TODOIST_API_TOKEN);
   }
 }
 
