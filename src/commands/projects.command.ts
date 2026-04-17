@@ -1,5 +1,5 @@
 import { BaseCommand } from './base.command.js';
-import { ProjectsModule } from '../modules/projects/projects.module.js';
+import { ProjectsModule } from '../modules/projects/list-projects.module.js';
 import { SetDefaultProjectModule } from '../modules/projects/set-default-project.module.js';
 import { t } from '../utils/i18n/i18n.util.js';
 
