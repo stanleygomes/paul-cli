@@ -83,3 +83,7 @@ This repository (`paul-cli`) is a command-line interface tool designed to manage
 - Forgetting `.js` in imports (will break the build).
 - Hardcoding strings in Portuguese (always use i18n).
 - Fat Commands (keep logic in Modules).
+
+## Most important
+
+- Make it secure and don't make mistakes.
